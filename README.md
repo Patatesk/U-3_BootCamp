@@ -34,6 +34,19 @@ U-3 Oyunu
 - 12 - 45 yaş arası oyuncular
 
 ## Product Backlog URL
+[Jira Backlog Board]([https://miro.com/app/board/uXjVO3JhxBQ=/](https://sametjr.atlassian.net/jira/software/projects/OUAB/boards/1)https://sametjr.atlassian.net/jira/software/projects/OUAB/boards/1)
 
+# Sprint 1
+
+- Görev dağılımları belirlendi.
+- Oyun türü belirlendi.
+- Oyun mekanikleri ve kapsamı belirlendi.
+- İş dağılımları yapıldı.
+- Github ve proje setupları tamamlandı.
+- Günlük scrumların whatsapp üzerinden yapılmasına karar verildi.
+
+# Sprint Retrospective
+
+- Ekip içerisinde iletişimin arttırılması gerekiyor.
 
 
