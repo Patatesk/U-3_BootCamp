@@ -45,7 +45,7 @@ U-3 Oyunu
 - Github ve proje setupları tamamlandı.
 - Günlük scrumların whatsapp üzerinden yapılmasına karar verildi.
 
-# Sprint Retrospective
+## Sprint Retrospective
 
 - Ekip içerisinde iletişimin arttırılması gerekiyor.
 
