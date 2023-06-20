@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Samet/SametScene.unity
+    guid: 5dc7a5d24daf65944affddfb4b28ca8a
   m_configObjects: {}
