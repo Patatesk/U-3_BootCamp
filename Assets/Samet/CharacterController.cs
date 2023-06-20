@@ -50,11 +50,6 @@ namespace BootCamp.SametJR
 
         private void CheckForPushables()
         {
-            if(!canPush)
-            {
-                canMove = false;
-                return;
-            } 
             Debug.DrawRay(transform.position, transform.forward, Color.red);
             Debug.DrawRay(transform.position - Vector3.up, transform.forward, Color.red);
             Debug.DrawRay(transform.position + Vector3.up, transform.forward, Color.red);
@@ -69,6 +64,11 @@ namespace BootCamp.SametJR
                 if (hit.collider.gameObject.CompareTag("pushable"))
                 {
                     Debug.Log("Pushing");
+                    if(!canPush)
+                    {
+                        canMove = false;
+                        return;
+                    }
                     isPushing = true;
                     hit.collider.gameObject.transform.position += movement * pushingSpeed * Time.deltaTime;
                 }
@@ -77,7 +77,7 @@ namespace BootCamp.SametJR
 
         private void CheckMovement()
         {
-            if (!canMove) return;
+            
             // Get the input from the player
             float horizontal = Input.GetAxis("Horizontal");
             float vertical = Input.GetAxis("Vertical");
@@ -86,7 +86,9 @@ namespace BootCamp.SametJR
             movement = new Vector3(horizontal, 0, vertical);
             var sped = isPushing ? pushingSpeed : speed;
             Debug.Log(sped);
-            transform.position += movement * sped * Time.deltaTime;
+
+            if (canMove)
+                transform.position += movement * sped * Time.deltaTime;
 
             // Rotate the player to face the direction of movement
             if (movement != Vector3.zero)
