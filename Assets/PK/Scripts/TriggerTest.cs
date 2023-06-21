@@ -9,8 +9,12 @@ namespace BootCamp.PK
     public class TriggerTest : MonoBehaviour
     {
         [SerializeField] private int channel = 0;
-        [SerializeField] private bool canTrigger = true;       
-
+        [SerializeField] private bool canTrigger = true;
+        [ContextMenu("Test")]
+        public void Test()
+        {
+            TriggerEvent.Trigger_Start(channel);
+        }
         public void TriggerEventMethod(int channel)
         {
             if (!canTrigger) return;
