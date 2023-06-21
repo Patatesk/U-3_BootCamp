@@ -34,7 +34,7 @@ U-3 Oyunu
 - 12 - 45 yaş arası oyuncular
 
 ## Product Backlog URL
-[Jira Backlog Board]([https://miro.com/app/board/uXjVO3JhxBQ=/](https://sametjr.atlassian.net/jira/software/projects/OUAB/boards/1)https://sametjr.atlassian.net/jira/software/projects/OUAB/boards/1)
+[Jira Backlog Board]((https://sametjr.atlassian.net/jira/software/projects/OUAB/boards/1)https://sametjr.atlassian.net/jira/software/projects/OUAB/boards/1)
 
 # Sprint 1
 
