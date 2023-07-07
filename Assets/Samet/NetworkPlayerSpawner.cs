@@ -9,7 +9,7 @@ namespace BootCamp.SametJR
     {
         public NetworkVariable<int> playerCount = new NetworkVariable<int>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
         public GameObject bigPlayerPrefab, smallPlayerPrefab;
-        public GameObject spawnPoint1, spawnPoint2;
+        public Vector3 spawnPoint1, spawnPoint2;
 
         private void Start()
         {
@@ -48,15 +48,15 @@ namespace BootCamp.SametJR
                 GameObject player = Instantiate(bigPlayerPrefab);
                 player.GetComponent<NetworkObject>().SpawnAsPlayerObject(clientId);
                 player.SetActive(false);
-                player.transform.position = spawnPoint1.transform.position;
+                player.transform.position = spawnPoint1;
                 player.SetActive(true);
             }
             else if (playerCount.Value == 2)
             {
-                GameObject player = Instantiate(smallPlayerPrefab, spawnPoint2.transform.position, Quaternion.identity);
+                GameObject player = Instantiate(smallPlayerPrefab, spawnPoint2, Quaternion.identity);
                 player.GetComponent<NetworkObject>().SpawnAsPlayerObject(clientId);
                 player.SetActive(false);
-                player.transform.position = spawnPoint2.transform.position;
+                player.transform.position = spawnPoint2;
                 player.SetActive(true);
             }
         }
