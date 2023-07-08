@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace BootCamp.Hamza
 {
+    [ExecuteInEditMode]
     public class LaserManager : MonoBehaviour
     {
         [Tooltip("Number of lasers")]
@@ -20,8 +21,14 @@ namespace BootCamp.Hamza
 
         private LineRenderer[] lineRenderers;
 
-        private void Start()
+        [ContextMenu("Draw")]
+        private void StartDraw()
         {
+            int childCount = transform.childCount;
+            for (int i = 0; i < childCount; i++)
+            {
+               DestroyImmediate(transform.GetChild(0).gameObject);
+            }
             lineRenderers = new LineRenderer[laserCount];
 
             // Calculate the total offset
