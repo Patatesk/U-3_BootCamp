@@ -61,7 +61,7 @@ namespace BootCamp.SametJR
                 Physics.Raycast(transform.position + Vector3.up, transform.forward, out hit, pushRange))
 
             {
-                if (hit.collider.gameObject.CompareTag("pushable"))
+                if (hit.collider.gameObject.CompareTag("Pushable"))
                 {
                     Debug.Log("Pushing");
                     if(!canPush)
@@ -92,12 +92,26 @@ namespace BootCamp.SametJR
 
             // Rotate the player to face the direction of movement
             if (movement != Vector3.zero)
-                transform.rotation = Quaternion.LookRotation(movement);
+                // transform.rotation = Quaternion.LookRotation(movement); //Instead of turning instantly, we can use Quaternion.Lerp to turn smoothly
+                transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(movement), 0.2f);
+
 
             // If the player presses the space bar, jump
             if (Input.GetKeyDown(KeyCode.Space) && canJump)
             {
                 rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+                canJump = false;
+            }
+        }
+
+        private void OnCollisionEnter(Collision collision)
+        {
+            if(!IsOwner) return;
+            if(canJump) return;
+            if(OwnerClientId == 0) return;
+            if (collision.gameObject.CompareTag("Ground"))
+            {
+                canJump = true;
             }
         }
     }

@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Samet/Deneme.unity
     guid: bbd59b2c2119fb644a4b1344c3651337
+  - enabled: 1
+    path: Assets/Samet/Scenes/Levels.unity
+    guid: 3888ee68c06fc9c4c83473445e477f6e
   m_configObjects: {}

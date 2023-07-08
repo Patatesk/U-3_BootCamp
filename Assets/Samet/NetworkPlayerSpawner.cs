@@ -9,7 +9,9 @@ namespace BootCamp.SametJR
     {
         public NetworkVariable<int> playerCount = new NetworkVariable<int>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
         public GameObject bigPlayerPrefab, smallPlayerPrefab;
-        public Vector3 spawnPoint1, spawnPoint2;
+        [DrawIf("useSpawnPoints", true)] public Transform spawnPoint1, spawnPoint2;
+        public bool useSpawnPoints = false;
+        
 
         private void Start()
         {
@@ -45,18 +47,18 @@ namespace BootCamp.SametJR
         {
             if (playerCount.Value == 1)
             {
-                GameObject player = Instantiate(bigPlayerPrefab);
+                GameObject player = Instantiate(bigPlayerPrefab, useSpawnPoints ? spawnPoint1.position : Vector3.left, Quaternion.identity);
                 player.GetComponent<NetworkObject>().SpawnAsPlayerObject(clientId);
                 player.SetActive(false);
-                player.transform.position = spawnPoint1;
+                // player.transform.position = useSpawnPoints ? spawnPoint1.position : Vector3.left;
                 player.SetActive(true);
             }
             else if (playerCount.Value == 2)
             {
-                GameObject player = Instantiate(smallPlayerPrefab, spawnPoint2, Quaternion.identity);
+                GameObject player = Instantiate(smallPlayerPrefab, useSpawnPoints ? spawnPoint2.position : Vector3.right, Quaternion.identity);
                 player.GetComponent<NetworkObject>().SpawnAsPlayerObject(clientId);
                 player.SetActive(false);
-                player.transform.position = spawnPoint2;
+                // player.transform.position = useSpawnPoints ? spawnPoint2.position : Vector3.right;
                 player.SetActive(true);
             }
         }
