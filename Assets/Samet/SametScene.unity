@@ -292,8 +292,8 @@ MonoBehaviour:
     m_InternalValue: 0
   bigPlayerPrefab: {fileID: 3371332355739358968, guid: cd8de7d51ab628b4f857278b48afd25d, type: 3}
   smallPlayerPrefab: {fileID: 1882104335447562583, guid: 4f5b349d211f775478d1e4d3ce6919e8, type: 3}
-  spawnPoint1: {fileID: 344683595}
-  spawnPoint2: {fileID: 2137841891}
+  spawnPoint1: {x: 0, y: 0, z: 0}
+  spawnPoint2: {x: 0, y: 0, z: 0}
 --- !u!4 &144543232
 Transform:
   m_ObjectHideFlags: 0
