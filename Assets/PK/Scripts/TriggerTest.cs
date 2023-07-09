@@ -8,8 +8,8 @@ namespace BootCamp.PK
 {
     public class TriggerTest : MonoBehaviour
     {
-        [SerializeField] private int channel = 0;
-        [SerializeField] private bool canTrigger = true;
+        [SerializeField] protected int channel = 0;
+        [SerializeField] protected bool canTrigger = true;
         [ContextMenu("Trigger")]
         public void Test()
         {

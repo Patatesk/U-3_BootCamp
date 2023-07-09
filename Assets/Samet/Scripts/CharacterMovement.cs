@@ -6,7 +6,7 @@ using System;
 
 namespace BootCamp.SametJR
 {
-    public class CharacterController : NetworkBehaviour
+    public class CharacterMovement : NetworkBehaviour
     {
         [SerializeField] private float speed = 5f;
         [SerializeField] private float pushingSpeed = 2f;
@@ -14,12 +14,12 @@ namespace BootCamp.SametJR
         [SerializeField] private float pushRange = 2f;
         [SerializeField] private float pushForce = 25f;
 
-        private Vector3 movement;
-        private bool isPushing = false;
-        private bool canJump = false;
-        private bool canPush = false;
-        private bool canMove = true;
-        private Rigidbody rb;
+        public Vector3 movement;
+        public bool isPushing = false;
+        public bool canJump = false;
+        public bool canPush = false;
+        public bool canMove = true;
+        public Rigidbody rb;
         public override void OnNetworkSpawn()
         {
             base.OnNetworkSpawn();
@@ -84,11 +84,11 @@ namespace BootCamp.SametJR
 
             // Move the player
             movement = new Vector3(horizontal, 0, vertical);
-            var sped = isPushing ? pushingSpeed : speed;
-            Debug.Log(sped);
+            var _speed = isPushing ? pushingSpeed : speed;
+            // Debug.Log(sped);
 
             if (canMove)
-                transform.position += movement * sped * Time.deltaTime;
+                transform.position += movement * _speed * Time.deltaTime;
 
             // Rotate the player to face the direction of movement
             if (movement != Vector3.zero)

@@ -292,8 +292,9 @@ MonoBehaviour:
     m_InternalValue: 0
   bigPlayerPrefab: {fileID: 3371332355739358968, guid: cd8de7d51ab628b4f857278b48afd25d, type: 3}
   smallPlayerPrefab: {fileID: 1882104335447562583, guid: 4f5b349d211f775478d1e4d3ce6919e8, type: 3}
-  spawnPoint1: {x: 0, y: 0, z: 0}
-  spawnPoint2: {x: 0, y: 0, z: 0}
+  spawnPoint1: {fileID: 0}
+  spawnPoint2: {fileID: 0}
+  useSpawnPoints: 0
 --- !u!4 &144543232
 Transform:
   m_ObjectHideFlags: 0
@@ -794,7 +795,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a4e5303e400ea934cb6499ad9380eeae, type: 2}
+  - {fileID: 2100000, guid: 500f18ea2df86fb4ba9c220512b5ca7c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -929,7 +930,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a4e5303e400ea934cb6499ad9380eeae, type: 2}
+  - {fileID: 2100000, guid: 500f18ea2df86fb4ba9c220512b5ca7c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
