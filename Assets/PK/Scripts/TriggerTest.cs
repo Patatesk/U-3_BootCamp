@@ -10,7 +10,7 @@ namespace BootCamp.PK
     {
         [SerializeField] private int channel = 0;
         [SerializeField] private bool canTrigger = true;
-        [ContextMenu("Test")]
+        [ContextMenu("Trigger")]
         public void Test()
         {
             TriggerEvent.Trigger_Start(channel);
@@ -27,6 +27,9 @@ namespace BootCamp.PK
             TriggerEvent.Trigger_End(channel);
         }
     }
+
+
+    
 
     public static class TriggerEvent
     {

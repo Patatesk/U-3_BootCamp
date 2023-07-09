@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 using DG.Tweening;
+using System.Linq;
+using UnityEngine.UIElements;
 
 namespace BootCamp.PK
 {
     public class EventCatchBase : MonoBehaviour
     {
-        [SerializeField] private int channel = 0;
+        [SerializeField] private int[] channels;
         [SerializeField] private bool canCatch = true;
         [SerializeField] protected bool loop = false;
         [SerializeField] protected bool returnBack;
@@ -40,6 +42,7 @@ namespace BootCamp.PK
         private void CatchStartEvent(int channel)
         {
             if (!canCatch) return;
+            if(channels.Contains(channel))
             PerformStartEvent();
             
         }
@@ -47,7 +50,8 @@ namespace BootCamp.PK
         private void CatchEndEvent(int channel)
         {
             if (!canCatch) return;
-            PerformEndEvent();
+            if (channels.Contains(channel))
+                PerformEndEvent();
             
         }
         
