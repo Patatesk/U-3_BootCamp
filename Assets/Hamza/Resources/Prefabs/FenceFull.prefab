@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8810575667859547995}
   - component: {fileID: 3751087158590199493}
   - component: {fileID: 155478333542371819}
+  - component: {fileID: 1424026791638430697}
   m_Layer: 0
   m_Name: FenceLeft
   m_TagString: Untagged
@@ -84,6 +85,27 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &1424026791638430697
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1531363739998799186}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.06666667, y: 0.023999995, z: 0.07999999}
+  m_Center: {x: -0.0073643634, y: 0.0037209303, z: -0.00238372}
 --- !u!1 &6516410076210722406
 GameObject:
   m_ObjectHideFlags: 0
@@ -116,7 +138,7 @@ Transform:
   - {fileID: 8338445397255130573}
   - {fileID: 2431993756831690249}
   m_Father: {fileID: 0}
-  m_RootOrder: 20
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7688569491042492661
 GameObject:
@@ -129,6 +151,7 @@ GameObject:
   - component: {fileID: 8338445397255130573}
   - component: {fileID: 9047229996902034178}
   - component: {fileID: 3990722410107805407}
+  - component: {fileID: 7981967496164355006}
   m_Layer: 0
   m_Name: FenceMid
   m_TagString: Untagged
@@ -201,6 +224,27 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &7981967496164355006
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7688569491042492661}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.006666666, y: 0.0039999993, z: 0.04999999}
+  m_Center: {x: 0, y: -0.0000000011641531, z: -8.271806e-24}
 --- !u!1 &8488782068577546499
 GameObject:
   m_ObjectHideFlags: 0
@@ -212,6 +256,7 @@ GameObject:
   - component: {fileID: 2431993756831690249}
   - component: {fileID: 6301487130064189294}
   - component: {fileID: 4211256390680997252}
+  - component: {fileID: 5447120133711043655}
   m_Layer: 0
   m_Name: FenceRight
   m_TagString: Untagged
@@ -285,3 +330,24 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &5447120133711043655
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8488782068577546499}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.006666667, y: 0.023999996, z: 0.07999999}
+  m_Center: {x: 0.0012121216, y: 0.00018181883, z: -0.00090909365}
