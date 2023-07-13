@@ -14,8 +14,14 @@ namespace BootCamp.SametJR
         [SerializeField] private float pushRange = 2f;
         [SerializeField] private float pushForce = 25f;
 
+        // Animator Hashes and references
+        private Animator _animator;
+        private readonly int _isWalkingHash = Animator.StringToHash("isWalking");
+        private readonly int _isPushingHash = Animator.StringToHash("isPushing");
+
         public Vector3 movement;
         public bool isPushing = false;
+        public bool isMoving = false;
         public bool canJump = false;
         public bool canPush = false;
         public bool canMove = true;
@@ -27,6 +33,7 @@ namespace BootCamp.SametJR
             if (OwnerClientId == 1) canJump = true;
             if (OwnerClientId == 0) canPush = true;
             rb = GetComponent<Rigidbody>();
+            _animator = GetComponent<Animator>();
         }
 
         // Update is called once per frame
@@ -43,9 +50,35 @@ namespace BootCamp.SametJR
             canMove = true;
             isPushing = false;
             CheckForPushables();
+            UpdateAnimations();
 
 
 
+        }
+
+        private void UpdateAnimations()
+        {
+            if (_animator == null)
+            {
+                Debug.Log($"Animator is null for {gameObject.name}");
+                return;
+            }
+
+            if (isPushing)
+            {
+                _animator.SetBool(_isPushingHash, true);
+                _animator.SetBool(_isWalkingHash, false);
+            }
+            else if (movement != Vector3.zero)
+            {
+                _animator.SetBool(_isWalkingHash, true);
+                _animator.SetBool(_isPushingHash, false);
+            }
+            else
+            {
+                _animator.SetBool(_isWalkingHash, false);
+                _animator.SetBool(_isPushingHash, false);
+            }
         }
 
         private void CheckForPushables()
@@ -64,7 +97,7 @@ namespace BootCamp.SametJR
                 if (hit.collider.gameObject.CompareTag("Pushable"))
                 {
                     Debug.Log("Pushing");
-                    if(!canPush)
+                    if (!canPush)
                     {
                         canMove = false;
                         return;
@@ -77,7 +110,7 @@ namespace BootCamp.SametJR
 
         private void CheckMovement()
         {
-            
+
             // Get the input from the player
             float horizontal = Input.GetAxis("Horizontal");
             float vertical = Input.GetAxis("Vertical");
@@ -92,8 +125,11 @@ namespace BootCamp.SametJR
 
             // Rotate the player to face the direction of movement
             if (movement != Vector3.zero)
+            {
                 // transform.rotation = Quaternion.LookRotation(movement); //Instead of turning instantly, we can use Quaternion.Lerp to turn smoothly
                 transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(movement), 0.2f);
+                isMoving = true;
+            }
 
 
             // If the player presses the space bar, jump
@@ -106,9 +142,9 @@ namespace BootCamp.SametJR
 
         private void OnCollisionEnter(Collision collision)
         {
-            if(!IsOwner) return;
-            if(canJump) return;
-            if(OwnerClientId == 0) return;
+            if (!IsOwner) return;
+            if (canJump) return;
+            if (OwnerClientId == 0) return;
             if (collision.gameObject.CompareTag("Ground"))
             {
                 canJump = true;

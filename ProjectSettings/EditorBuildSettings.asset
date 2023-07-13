@@ -17,4 +17,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/PK/PK.Scene.unity
     guid: b25760ab9f098bd40bc31e77e9c098f2
+  - enabled: 1
+    path: Assets/Scenes/SampleScene.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Samet/Scenes/MainScene.unity
+    guid: 0ae7b28f4718dcf4090b5b302e6eda9d
   m_configObjects: {}
