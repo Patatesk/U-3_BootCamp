@@ -25,7 +25,7 @@ namespace SametJR
                     break;
             }
         }
-        protected override void PerformStartEvent()
+        protected override void PerformStartEvent(int _channel)
         {
             if (LeanTween.isTweening(gameObject)) return;
             LeanTween.rotateAround(gameObject, rotationAxis, 90f, 1.5f).setEaseInOutSine();

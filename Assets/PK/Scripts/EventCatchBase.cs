@@ -10,7 +10,7 @@ namespace BootCamp.PK
 {
     public class EventCatchBase : MonoBehaviour
     {
-        [SerializeField] private int[] channels;
+        [SerializeField] protected int[] channels;
         [SerializeField] private bool canCatch = true;
         [SerializeField] protected bool loop = false;
         [SerializeField] protected bool returnBack;
@@ -43,7 +43,7 @@ namespace BootCamp.PK
         {
             if (!canCatch) return;
             if(channels.Contains(channel))
-            PerformStartEvent();
+            PerformStartEvent(channel);
             
         }
 
@@ -51,16 +51,16 @@ namespace BootCamp.PK
         {
             if (!canCatch) return;
             if (channels.Contains(channel))
-                PerformEndEvent();
+                PerformEndEvent(channel);
             
         }
         
-        protected virtual void PerformStartEvent()
+        protected virtual void PerformStartEvent(int _channel)
         {
             
         }
 
-        protected virtual void PerformEndEvent()
+        protected virtual void PerformEndEvent(int _channel)
         {
             
         }

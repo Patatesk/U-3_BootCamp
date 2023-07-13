@@ -7,7 +7,7 @@ namespace BootCamp.PK
 {
     public class Move : EventCatchBase 
     {
-       protected override void PerformStartEvent()
+       protected override void PerformStartEvent(int channel)
         {
             if (loop)
             {

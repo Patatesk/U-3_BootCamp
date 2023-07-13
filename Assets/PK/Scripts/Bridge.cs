@@ -7,7 +7,7 @@ namespace BootCamp.PK
 {
     public class Bridge : EventCatchBase
     {
-        protected override void PerformStartEvent()
+        protected override void PerformStartEvent(int channel)
         {
             transform.DOMove(transform.position + (Vector3.one * 2), 2);
             if (returnBack)
