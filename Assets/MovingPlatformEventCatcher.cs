@@ -24,12 +24,13 @@ namespace SametJR
             Vector3 target = initialPosition;
             if (targets.Count == 1)
             {
-                target = targets[0].position;
+                target = targets[0].localPosition;
+                Debug.Log("Target is " + target);
             }
 
             else
             {
-                target = targets[IsEven(_channel) ? 0 : 1].position;
+                target = targets[IsEven(_channel) ? 0 : 1].localPosition;
 
             }
 
@@ -45,7 +46,8 @@ namespace SametJR
             if (LeanTween.isTweening(gameObject)) return;
 
             if (isPingPong)
-            {
+            {   
+                Debug.Log($"Ping ponging to local position {target}");
                 LeanTween.moveLocal(gameObject, target, time).setEase(easeType).setLoopPingPong();
                 return;
             }

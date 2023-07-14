@@ -1301,6 +1301,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad0c7f4b26fda63419d58a5356f9f61c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startPosition: {x: 0, y: 0, z: 0}
   speed: 5
   pushingSpeed: 2
   jumpForce: 5
@@ -1312,6 +1313,7 @@ MonoBehaviour:
   canJump: 0
   canPush: 0
   canMove: 1
+  isOnPlatform: 0
   rb: {fileID: 0}
 --- !u!114 &7669211098566528044
 MonoBehaviour:
