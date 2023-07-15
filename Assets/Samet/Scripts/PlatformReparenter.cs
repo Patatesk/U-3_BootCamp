@@ -10,7 +10,7 @@ namespace SametJR
         private bool isPlayerOnPlatform = false;
         private void OnCollisionEnter(Collision other)
         {
-            if (other.gameObject.CompareTag("Player"))
+            if (other.gameObject.CompareTag("Player")  ||  other.gameObject.CompareTag("Pushable"))
             {
                 Debug.Log($"Platform - Collision with {other.gameObject.name}");
                 // other.gameObject.transform.parent = transform;
@@ -20,7 +20,7 @@ namespace SametJR
 
         private void OnCollisionExit(Collision other)
         {
-            if (other.gameObject.CompareTag("Player"))
+            if (other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Pushable"))
             {
                 if (other.gameObject.transform.parent == transform)
                     // other.gameObject.transform.parent = null;

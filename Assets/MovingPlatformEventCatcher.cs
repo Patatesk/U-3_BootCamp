@@ -13,6 +13,11 @@ namespace SametJR
         [SerializeField] private LeanTweenType easeType = LeanTweenType.easeInOutSine;
         [SerializeField] private bool isReturningBack = false;
         [SerializeField] private bool isPingPong = false;
+        [SerializeField] private int setChannel = 999;
+
+
+        bool infiniteLoop = false;
+
         private void Start()
         {
             initialPosition = transform.localPosition;
@@ -21,6 +26,11 @@ namespace SametJR
 
         protected override void PerformStartEvent(int _channel)
         {
+            if (_channel == setChannel)
+            {
+                infiniteLoop = true;
+                return;
+            }
             Vector3 target = initialPosition;
             if (targets.Count == 1)
             {
@@ -46,7 +56,7 @@ namespace SametJR
             if (LeanTween.isTweening(gameObject)) return;
 
             if (isPingPong)
-            {   
+            {
                 Debug.Log($"Ping ponging to local position {target}");
                 LeanTween.moveLocal(gameObject, target, time).setEase(easeType).setLoopPingPong();
                 return;
@@ -58,6 +68,16 @@ namespace SametJR
                 LeanTween.moveLocal(gameObject, initialPosition, time).setEase(easeType).setDelay(time);
             }
 
+        }
+        protected override void PerformEndEvent(int _channel)
+        {
+            if(!infiniteLoop)
+            StopTweening();
+            
+        }
+        public void StopTweening()
+        {
+            LeanTween.cancel(gameObject);
         }
         private bool IsEven(int number) => number % 2 == 0;
     }

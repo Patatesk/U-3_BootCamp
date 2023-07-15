@@ -2,15 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using BootCamp.PK;
+using Unity.VisualScripting;
 
 namespace SametJR
 {
     public class StairsEventCatcher : EventCatchBase
     {
+        [SerializeField] private int setChannel;
         private List<GameObject> childs = new();
         private bool isAnimating = false;
         private Direction direction = Direction.Down;
-        private int index = 0;
+        private Direction lastDirection = Direction.Down;
         private void Start() {
             for (int i = 0; i < transform.childCount; i++)
             {
@@ -18,52 +20,41 @@ namespace SametJR
             }
         }
 
-        // [ContextMenu("Start Event")]
-        // private void Deneme()
-        // {
-        //     index = 0;
-        //     PerformStairAnimations(childs[0]);
-        // }
-
-        // [ContextMenu("End Event")]
-        // private void Deneme2()
-        // {
-        //     index = 0;
-        //     PerformStairAnimations(childs[0], Direction.Down);
-        // }
+        
         protected override void PerformStartEvent(int _channel)
         {
-            if(isAnimating) return;
-            isAnimating = true;
-            index = 0;
-            PerformStairAnimations(childs[0], Direction.Up);
+            if (_channel == setChannel)
+            {
+                isAnimating = true;
+                return;
+            }
+            lastDirection = Direction.Up;
+            if(isAnimating) return;           
+            if(direction != Direction.Up)
+               StartCoroutine(PerformStairAnimations(childs[0], Direction.Up));
         }
 
         protected override void PerformEndEvent(int _channel)
         {
-            if(isAnimating) return;
-            isAnimating = true;
-            index = 0;
-            PerformStairAnimations(childs[0], Direction.Down);
+            lastDirection = Direction.Down;
+            if (isAnimating) return;           
+            if (direction != Direction.Down)
+                StartCoroutine(PerformStairAnimations(childs[0], Direction.Down));
         }
 
-        private void PerformStairAnimations(GameObject stair, Direction direction)
+        
+
+        private IEnumerator PerformStairAnimations(GameObject stair, Direction direction)
         {
-            if(direction == this.direction) return;
-
-            
-
-            LeanTween.moveY(stair, stair.transform.position.y + (direction == Direction.Up ? 8f : -8f), .5f).setEaseOutBack().setOnComplete(() => {
-                if(index >= childs.Count - 1)
-                {
-                    // isAnimating = false;
-                    this.direction = direction;
-                    return;
-                } 
-                PerformStairAnimations(childs[++index], direction);
-            }).setOnComplete(
-                () => isAnimating = false
-            );
+            isAnimating = true;
+            foreach (var item in childs)
+            {
+                LeanTween.moveY(item, item.transform.position.y + (direction == Direction.Up ? 8f : -8f), .5f).setEaseOutBack();
+                yield return new WaitForSeconds(.5f);
+            }
+            isAnimating = false;
+            this.direction = direction;
+            if(lastDirection != direction) StartCoroutine(PerformStairAnimations(childs[0], lastDirection));
         }
 
         enum Direction
@@ -71,6 +62,7 @@ namespace SametJR
             Up,
             Down
         }
+       
 
 
 
