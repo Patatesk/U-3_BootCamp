@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 2611976587560397980}
   m_Layer: 0
   m_Name: SmallBoi
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -161,9 +161,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad0c7f4b26fda63419d58a5356f9f61c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startPosition: {x: 0, y: 0, z: 0}
+  initialScale: {x: 0, y: 0, z: 0}
   speed: 5
-  jumpForce: 5
+  pushingSpeed: 2
+  jumpForce: 8
   pushRange: 1
+  pushForce: 25
+  movement: {x: 0, y: 0, z: 0}
+  isPushing: 0
+  isMoving: 0
+  canJump: 0
+  canPush: 0
+  canMove: 1
+  isOnPlatform: 0
+  rb: {fileID: 0}
 --- !u!1 &2100594054894229451
 GameObject:
   m_ObjectHideFlags: 0

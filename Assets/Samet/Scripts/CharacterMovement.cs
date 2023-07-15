@@ -11,6 +11,7 @@ namespace BootCamp.SametJR
     {
         // Character data
         public Vector3 startPosition;
+        public Vector3 initialScale;
 
         // Serialized variables
         [SerializeField] private float speed = 5f;
@@ -39,6 +40,7 @@ namespace BootCamp.SametJR
             if (!IsOwner) return;
             if (OwnerClientId == 1) canJump = true;
             if (OwnerClientId == 0) canPush = true;
+            initialScale = transform.localScale;
             rb = GetComponent<Rigidbody>();
             _animator = GetComponent<Animator>();
         }
@@ -64,7 +66,7 @@ namespace BootCamp.SametJR
             isPushing = false;
             CheckForPushables();
             UpdateAnimations();
-
+            transform.localScale = initialScale;
 
 
         }
@@ -102,7 +104,7 @@ namespace BootCamp.SametJR
 
 
             RaycastHit hit;
-            if (Physics.Raycast(transform.position, transform.forward, out hit, pushRange))
+            if (Physics.Raycast(transform.position + transform.up, transform.forward, out hit, pushRange))
 
             {
                 GameObject hitObject = hit.collider.gameObject;
@@ -138,7 +140,7 @@ namespace BootCamp.SametJR
             // Rotate the player to face the direction of movement
             if (movement != Vector3.zero)
             {
-                if (transform.parent != null) /*transform.parent = null*/ /*ReparentObjectServerRpc(null)*/ ReparentObjectServerRpc(GetComponent<NetworkObject>().NetworkObjectId, 999999);
+                // if (transform.parent != null) /*transform.parent = null*/ /*ReparentObjectServerRpc(null)*/ ReparentObjectServerRpc(GetComponent<NetworkObject>().NetworkObjectId, 999999);
 
                 // transform.rotation = Quaternion.LookRotation(movement); //Instead of turning instantly, we can use Quaternion.Lerp to turn smoothly
                 transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(movement), 0.2f);
@@ -179,7 +181,7 @@ namespace BootCamp.SametJR
                 Debug.Log($"Big one collided with platform {collision.gameObject.name}");
                 // transform.parent = collision.gameObject.transform;
                 // ReparentObjectServerRpc(collision.gameObject.transform);
-                ReparentObjectServerRpc(GetComponent<NetworkObject>().NetworkObjectId, collision.gameObject.GetComponent<NetworkObject>().NetworkObjectId);
+                // ReparentObjectServerRpc(GetComponent<NetworkObject>().NetworkObjectId, collision.gameObject.GetComponent<NetworkObject>().NetworkObjectId);
             }
         }
 
@@ -187,26 +189,28 @@ namespace BootCamp.SametJR
         {
             if (other.gameObject.CompareTag("Platform"))
             {
-                if (transform.parent == null)
+                // if (transform.parent == null)
                     // transform.parent = other.gameObject.transform;
                     // ReparentObjectServerRpc(other.gameObject.transform);
-                    ReparentObjectServerRpc(GetComponent<NetworkObject>().NetworkObjectId, other.gameObject.GetComponent<NetworkObject>().NetworkObjectId);
+                    // ReparentObjectServerRpc(GetComponent<NetworkObject>().NetworkObjectId, other.gameObject.GetComponent<NetworkObject>().NetworkObjectId);
+                    // ;
             }
         }
 
-        [ServerRpc(RequireOwnership = false)]
-        public void ReparentObjectServerRpc(ulong parentedObjectId, ulong parentObjectId)
-        {
-            // transform.parent = parent;
-            var parentedObject = NetworkManager.Singleton.SpawnManager.SpawnedObjects[parentedObjectId].gameObject;
-            if(parentObjectId == 999999)
-            {
-                parentedObject.transform.parent = null;
-                return;
-            }
-            var parentObject = NetworkManager.Singleton.SpawnManager.SpawnedObjects[parentObjectId].gameObject;
-            parentedObject.transform.parent = parentObject.transform;
-        }
+        // [ServerRpc(RequireOwnership = false)]
+        // public void ReparentObjectServerRpc(ulong parentedObjectId, ulong parentObjectId)
+        // {
+        //     // transform.parent = parent;
+        //     var parentedObject = NetworkManager.Singleton.SpawnManager.SpawnedObjects[parentedObjectId].gameObject;
+        //     if(parentObjectId == 999999)
+        //     {
+        //         parentedObject.transform.parent = null;
+        //         return;
+        //     }
+        //     var parentObject = NetworkManager.Singleton.SpawnManager.SpawnedObjects[parentObjectId].gameObject;
+        //     parentedObject.transform.parent = parentObject.transform;
+        //     // parentedObject.transform.localScale /= parentObject.transform.localScale.x;
+        // }
 
         private void OnTriggerEnter(Collider other)
         {

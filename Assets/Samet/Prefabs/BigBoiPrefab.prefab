@@ -1232,7 +1232,7 @@ GameObject:
   - component: {fileID: 5159570188445777017}
   m_Layer: 0
   m_Name: BigBoiPrefab
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1302,6 +1302,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startPosition: {x: 0, y: 0, z: 0}
+  initialScale: {x: 0, y: 0, z: 0}
   speed: 5
   pushingSpeed: 2
   jumpForce: 5

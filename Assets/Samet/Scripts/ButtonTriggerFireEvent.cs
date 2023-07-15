@@ -7,7 +7,7 @@ using BootCamp.SametJR;
 
 namespace SametJR
 {
-    [RequireComponent(typeof(TriggerTest))]
+    // [RequireComponent(typeof(TriggerTest))]
     [RequireComponent(typeof(Collider))]
     public class ButtonTriggerFireEvent : TriggerTest
     {
@@ -21,7 +21,7 @@ namespace SametJR
 
         private void OnTriggerEnter(Collider other) {
             Debug.Log($"Triggered by {other.name}");
-            if(other.CompareTag("Player") && other.GetComponent<CharacterMovement>().canPush)
+            if((other.CompareTag("Player") && other.GetComponent<CharacterMovement>().canPush) || other.CompareTag("Pushable"))
             {
                 Debug.Log($"Triggering event on channel {channel}");
                 Test();
@@ -31,6 +31,7 @@ namespace SametJR
 
         private void OnTriggerExit(Collider other) {
             mr.material.color = Color.green;
+            TriggerEventMethod_End(channel);
         }
 
     }
