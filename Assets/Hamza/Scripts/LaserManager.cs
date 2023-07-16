@@ -3,7 +3,6 @@ using UnityEngine;
 
 namespace BootCamp.Hamza
 {
-    [ExecuteInEditMode]
     public class LaserManager : MonoBehaviour
     {
         [Tooltip("Number of lasers")]
@@ -21,14 +20,18 @@ namespace BootCamp.Hamza
 
         private LineRenderer[] lineRenderers;
 
+        private void Start()
+        {
+            StartDraw();
+        }
         [ContextMenu("Draw")]
         private void StartDraw()
         {
-            int childCount = transform.childCount;
-            for (int i = 0; i < childCount; i++)
-            {
-               DestroyImmediate(transform.GetChild(0).gameObject);
-            }
+            //int childCount = transform.childCount;
+            //for (int i = 0; i < childCount; i++)
+            //{
+            //   DestroyImmediate(transform.GetChild(0).gameObject);
+            //}
             lineRenderers = new LineRenderer[laserCount];
 
             // Calculate the total offset
@@ -64,7 +67,7 @@ namespace BootCamp.Hamza
                 // Calculate the offset for current laser
                 float offset = i * laserOffset - ((laserCount - 1) * laserOffset) / 2f;
 
-                Ray ray = new Ray(transform.position + new Vector3(offset, 0f, 0f), transform.forward);
+                Ray ray = new Ray(lineRenderers[i].transform.position, transform.forward);
                 RaycastHit hit;
 
                 // Cast the ray and update LineRenderer positions
@@ -76,6 +79,8 @@ namespace BootCamp.Hamza
                     if (hit.collider.CompareTag(playerTag))
                     {
                         Debug.Log("Player hit by laser!");
+                        Debug.Log("Hit" + i);
+
                     }
                 }
                 else

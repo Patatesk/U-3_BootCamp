@@ -58,7 +58,8 @@ namespace SametJR
             if (isPingPong)
             {
                 Debug.Log($"Ping ponging to local position {target}");
-                LeanTween.moveLocal(gameObject, target, time).setEase(easeType).setLoopPingPong();
+                LeanTween.moveLocal
+                    (gameObject, target, time).setEase(easeType).setLoopPingPong();
                 return;
             }
             LeanTween.moveLocal(gameObject, target, time).setEase(easeType);

@@ -10,24 +10,37 @@ namespace SametJR
     public class LeverTriggerFireEvent : TriggerTest
     {
         GameObject child;
+        private State lastState = State.Close;
         private void Start() {
             GetComponent<Collider>().isTrigger = true;       
             child = transform.GetChild(0).gameObject;
         }
 
         private void OnTriggerEnter(Collider other) {
-            Debug.Log($"Triggered by {other.name}");
-            if(other.CompareTag("Player"))
+
+            if(other.CompareTag("Player") && lastState == State.Close)
             {
-                Debug.Log($"Triggering event on channel {channel}");
-                Test();
+                TriggerEventMethod(channel);
+                lastState = State.Open;
+                LeanTween.rotateLocal(child, new Vector3(0, 0, 45), .5f);
+
             }
-            LeanTween.rotateLocal(child, new Vector3(0, 0, 45), 1f).setEaseInOutSine();
+            else if (other.CompareTag("Player") && lastState == State.Open)
+            {
+                TriggerEventMethod_End(channel);
+                lastState = State.Close;
+                Debug.Log("Closing");
+                LeanTween.rotateLocal(child, new Vector3(0, 0, -45), .5f);
+
+            }
         }
 
-        private void OnTriggerExit(Collider other) {
-            LeanTween.rotateLocal(child, new Vector3(0, 0, -45), 1f).setEaseInOutSine();
-        }
+      
 
+        enum State
+        {
+            Open,
+            Close
+        }
     }
 }

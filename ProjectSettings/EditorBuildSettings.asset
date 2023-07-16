@@ -26,4 +26,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Samet/Scenes/RelayTest.unity
     guid: a19331f0a592eff4abfe885230f6af34
+  - enabled: 1
+    path: Assets/Samet/Scenes/AnaOyun.unity
+    guid: 488726f3e9c225846abd47986795b4ec
   m_configObjects: {}
