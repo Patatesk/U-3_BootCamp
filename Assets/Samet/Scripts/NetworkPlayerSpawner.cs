@@ -49,7 +49,7 @@ namespace BootCamp.SametJR
             if (playerCount.Value == 1)
             {
                 GameObject player = Instantiate(bigPlayerPrefab, useSpawnPoints ? spawnPoint1.position : Vector3.left, Quaternion.identity);
-                player.GetComponent<CharacterMovement>().SetStartPosition(useSpawnPoints ? spawnPoint1.position : Vector3.left);
+                //player.GetComponent<CharacterMovement>().SetStartPosition(useSpawnPoints ? spawnPoint1.position : Vector3.left);
                 player.tag = "Player";
                 player.GetComponent<NetworkObject>().SpawnAsPlayerObject(clientId);
                 player.SetActive(false);
@@ -59,7 +59,7 @@ namespace BootCamp.SametJR
             else if (playerCount.Value == 2)
             {
                 GameObject player = Instantiate(smallPlayerPrefab, useSpawnPoints ? spawnPoint2.position : Vector3.right, Quaternion.identity);
-                player.GetComponent<CharacterMovement>().SetStartPosition(useSpawnPoints ? spawnPoint1.position : Vector3.left);
+                //player.GetComponent<CharacterMovement>().SetStartPosition(useSpawnPoints ? spawnPoint1.position : Vector3.left);
                 player.tag = "Player";
                 player.GetComponent<NetworkObject>().SpawnAsPlayerObject(clientId);
                 player.SetActive(false);

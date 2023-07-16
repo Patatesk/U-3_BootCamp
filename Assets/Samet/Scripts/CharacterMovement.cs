@@ -43,7 +43,11 @@ namespace BootCamp.SametJR
             initialScale = transform.localScale;
             rb = GetComponent<Rigidbody>();
             _animator = GetComponent<Animator>();
+            SetStartPosition(transform.position);
+
         }
+
+
 
         public void SetStartPosition(Vector3 position)
         {
