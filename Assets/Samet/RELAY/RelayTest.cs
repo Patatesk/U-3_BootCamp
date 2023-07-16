@@ -8,6 +8,7 @@ using Unity.Services.Relay.Models;
 using Unity.Services.Authentication;
 using Unity.Netcode;
 using Unity.Netcode.Transports.UTP;
+using System;
 
 namespace SametJR
 {
@@ -69,9 +70,18 @@ namespace SametJR
                 NetworkManager.Singleton.GetComponent<UnityTransport>().SetRelayServerData(relayServerData);
 
                 NetworkManager.Singleton.StartClient();
+
+                CloseCanvasServerRpc();
             } catch (RelayServiceException e) {
+
                 Debug.Log(e.Message);
             }
+        }
+
+        [ServerRpc(RequireOwnership = false)]
+        public void CloseCanvasServerRpc()
+        {
+            RelayUI.Instance.CloseCanvasClientRpc();
         }
     }
 }
