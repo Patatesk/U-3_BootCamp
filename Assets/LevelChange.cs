@@ -6,8 +6,7 @@ namespace SametJR
 {
     public class LevelChange : MonoBehaviour
     {
-        [SerializeField] private GameObject[] levels;
-        private int level = 0;
+       
 
         private bool playerOneReady = false;
         private bool playerTwoReady = false;
@@ -26,20 +25,10 @@ namespace SametJR
                     playerOneReady = true;
                 }
 
-                if (playerTwoReady && playerOneReady) ChangeLevel();
+                if (playerTwoReady && playerOneReady) LevelManager1.Instance.ChangeLevel();
             }
         }
-        private void ChangeLevel()
-        {
-            levels[level].SetActive(false);
-            level++;
-            if (level >= levels.Length)
-            {
-                level = 0;
-            }
-            levels[level].SetActive(true);
-        }
-
+      
         private void OnTriggerExit(Collider other)
         {
             if (other.CompareTag("Player"))
