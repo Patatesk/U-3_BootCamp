@@ -22,8 +22,15 @@ namespace BootCamp.SametJR
 
         // Animator Hashes and references
         private Animator _animator;
+
+        // Animator hashes for big character
         private readonly int _isWalkingHash = Animator.StringToHash("isWalking");
         private readonly int _isPushingHash = Animator.StringToHash("isPushing");
+
+        // Animator hashes for small character
+        private readonly int _isJumpingHash = Animator.StringToHash("jump"); // trigger
+        private readonly int _isRunningHash = Animator.StringToHash("isRunning");
+
 
         // Movement variables
         public Vector3 movement;
@@ -83,21 +90,38 @@ namespace BootCamp.SametJR
                 return;
             }
 
-            if (isPushing)
+            if (OwnerClientId == 0)
             {
-                _animator.SetBool(_isPushingHash, true);
-                _animator.SetBool(_isWalkingHash, false);
+                if (isPushing)
+                {
+                    _animator.SetBool(_isPushingHash, true);
+                    _animator.SetBool(_isWalkingHash, false);
+                }
+                else if (movement != Vector3.zero)
+                {
+                    _animator.SetBool(_isWalkingHash, true);
+                    _animator.SetBool(_isPushingHash, false);
+                }
+                else
+                {
+                    _animator.SetBool(_isWalkingHash, false);
+                    _animator.SetBool(_isPushingHash, false);
+                }
             }
-            else if (movement != Vector3.zero)
+
+            else if(OwnerClientId == 1)
             {
-                _animator.SetBool(_isWalkingHash, true);
-                _animator.SetBool(_isPushingHash, false);
+                if (movement != Vector3.zero)
+                {
+                    _animator.SetBool(_isRunningHash, true);
+                }
+                else
+                {
+                    _animator.SetBool(_isRunningHash, false);
+                }
             }
-            else
-            {
-                _animator.SetBool(_isWalkingHash, false);
-                _animator.SetBool(_isPushingHash, false);
-            }
+
+
         }
 
         private void CheckForPushables()
@@ -156,6 +180,7 @@ namespace BootCamp.SametJR
             if (Input.GetKeyDown(KeyCode.Space) && canJump)
             {
                 rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+                _animator.SetTrigger(_isJumpingHash);
                 canJump = false;
             }
         }
@@ -194,10 +219,10 @@ namespace BootCamp.SametJR
             if (other.gameObject.CompareTag("Platform"))
             {
                 // if (transform.parent == null)
-                    // transform.parent = other.gameObject.transform;
-                    // ReparentObjectServerRpc(other.gameObject.transform);
-                    // ReparentObjectServerRpc(GetComponent<NetworkObject>().NetworkObjectId, other.gameObject.GetComponent<NetworkObject>().NetworkObjectId);
-                    // ;
+                // transform.parent = other.gameObject.transform;
+                // ReparentObjectServerRpc(other.gameObject.transform);
+                // ReparentObjectServerRpc(GetComponent<NetworkObject>().NetworkObjectId, other.gameObject.GetComponent<NetworkObject>().NetworkObjectId);
+                // ;
             }
         }
 
