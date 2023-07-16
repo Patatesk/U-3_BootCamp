@@ -245,5 +245,14 @@ namespace BootCamp.SametJR
         {
             Debug.Log($"Trigger with {other.gameObject.name}");
         }
+
+        public void SetTransform(Transform _transform)
+        {
+            if(!IsOwner) return;
+            
+            transform.position = _transform.position;
+            transform.rotation = _transform.rotation;
+            transform.localScale = _transform.localScale;
+        }
     }
 }
