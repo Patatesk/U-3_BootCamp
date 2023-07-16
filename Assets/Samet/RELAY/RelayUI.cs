@@ -4,21 +4,12 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using Unity.Netcode;
+using System;
 
 namespace SametJR
 {
-    public class RelayUI : MonoBehaviour
-    {   
-        #region Singleton
-        public static RelayUI Instance { get; private set; }
-        private void Awake()
-        {
-            if (Instance != null)
-                Destroy(gameObject);
-            else
-                Instance = this;
-        }
-        #endregion
+    public class RelayUI : NetworkBehaviour
+    {  
         [SerializeField] private TMP_InputField joinCodeInputField;
         [SerializeField] private Button joinButton;
         [SerializeField] private Button hostButton;
@@ -29,8 +20,17 @@ namespace SametJR
         {
             joinButton.onClick.AddListener(JoinRelay);
             hostButton.onClick.AddListener(HostRelay);
+            NetworkManager.Singleton.OnClientConnectedCallback += OnClientConnected;
             joinCodeText.gameObject.SetActive(false);
             waitingForSecondPlayerText.gameObject.SetActive(false);
+        }
+
+        private void OnClientConnected(ulong _clientID)
+        {
+            // if (NetworkManager.Singleton.IsHost)
+            //     return;
+            if(_clientID == 1)
+                gameObject.SetActive(false);
         }
 
         private void JoinRelay()
@@ -56,11 +56,5 @@ namespace SametJR
             waitingForSecondPlayerText.gameObject.SetActive(true);
         }
 
-        [ClientRpc]
-        public void CloseCanvasClientRpc()
-        {
-            Debug.Log($"Closing canvas for {NetworkManager.Singleton.LocalClientId}");
-            gameObject.transform.parent.gameObject.SetActive(false);
-        }
     }
 }
