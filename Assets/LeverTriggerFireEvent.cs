@@ -27,9 +27,8 @@ namespace SametJR
             }
             else if (other.CompareTag("Player") && lastState == State.Open)
             {
-                TriggerEventMethod_End(channel);
+                TriggerEventMethod(channel);
                 lastState = State.Close;
-                Debug.Log("Closing");
                 LeanTween.rotateLocal(child, new Vector3(0, 0, -45), .5f);
 
             }

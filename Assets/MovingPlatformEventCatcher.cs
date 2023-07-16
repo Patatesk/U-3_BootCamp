@@ -14,6 +14,7 @@ namespace SametJR
         [SerializeField] private bool isReturningBack = false;
         [SerializeField] private bool isPingPong = false;
         [SerializeField] private int setChannel = 999;
+        [SerializeField] private bool isMovingDown = false;
 
 
         bool infiniteLoop = false;
@@ -26,6 +27,7 @@ namespace SametJR
 
         protected override void PerformStartEvent(int _channel)
         {
+            LeanTween.cancel(gameObject);
             if (_channel == setChannel)
             {
                 infiniteLoop = true;
@@ -34,13 +36,17 @@ namespace SametJR
             Vector3 target = initialPosition;
             if (targets.Count == 1)
             {
-                target = targets[0].localPosition;
+                if (isMovingDown) {
+                    LeanTween.moveY(gameObject, targets[0].position.y,.5f).setOnComplete(()=> transform.GetComponent<BoxCollider>().enabled = false);
+                    return;
+                }
+                target = targets[0].position;
                 Debug.Log("Target is " + target);
             }
 
             else
             {
-                target = targets[IsEven(_channel) ? 0 : 1].localPosition;
+                target = targets[IsEven(_channel) ? 0 : 1].position;
 
             }
 
@@ -58,15 +64,15 @@ namespace SametJR
             if (isPingPong)
             {
                 Debug.Log($"Ping ponging to local position {target}");
-                LeanTween.moveLocal
+                LeanTween.move
                     (gameObject, target, time).setEase(easeType).setLoopPingPong();
                 return;
             }
-            LeanTween.moveLocal(gameObject, target, time).setEase(easeType);
+            LeanTween.move(gameObject, target, time).setEase(easeType);
 
             if (isReturningBack)
             {
-                LeanTween.moveLocal(gameObject, initialPosition, time).setEase(easeType).setDelay(time);
+                LeanTween.move(gameObject, initialPosition, time).setEase(easeType).setDelay(time);
             }
 
         }

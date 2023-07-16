@@ -5,25 +5,25 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Samet/Scenes/MainScene.unity
     guid: 0ae7b28f4718dcf4090b5b302e6eda9d
-  - enabled: 1
+  - enabled: 0
     path: Assets/Samet/Scenes/SametScene.unity
     guid: 5dc7a5d24daf65944affddfb4b28ca8a
   - enabled: 0
     path: Assets/Samet/Deneme.unity
     guid: bbd59b2c2119fb644a4b1344c3651337
-  - enabled: 1
+  - enabled: 0
     path: Assets/Samet/Scenes/Levels.unity
     guid: 3888ee68c06fc9c4c83473445e477f6e
-  - enabled: 1
+  - enabled: 0
     path: Assets/PK/PK.Scene.unity
     guid: b25760ab9f098bd40bc31e77e9c098f2
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
-  - enabled: 1
+  - enabled: 0
     path: Assets/Samet/Scenes/RelayTest.unity
     guid: a19331f0a592eff4abfe885230f6af34
   - enabled: 1
