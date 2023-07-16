@@ -12,7 +12,7 @@ using System;
 
 namespace SametJR
 {
-    public class RelayTest : MonoBehaviour
+    public class RelayTest : NetworkBehaviour
     {
         #region Singleton
         public static RelayTest Instance { get; private set; }
@@ -25,6 +25,7 @@ namespace SametJR
         }
         #endregion
         public string JoinCode { get; private set; }
+        [SerializeField] private GameObject menuCanvas;
         private async void Start()
         {
             await UnityServices.InitializeAsync();
@@ -71,7 +72,7 @@ namespace SametJR
 
                 NetworkManager.Singleton.StartClient();
 
-                CloseCanvasServerRpc();
+                // CloseCanvasServerRpc();
             } catch (RelayServiceException e) {
 
                 Debug.Log(e.Message);
@@ -81,7 +82,15 @@ namespace SametJR
         [ServerRpc(RequireOwnership = false)]
         public void CloseCanvasServerRpc()
         {
-            RelayUI.Instance.CloseCanvasClientRpc();
+            CloseCanvasClientRpc();
+        }
+
+        
+        [ClientRpc]
+        public void CloseCanvasClientRpc()
+        {
+            Debug.Log($"Closing canvas for {NetworkManager.Singleton.LocalClientId}");
+            LeanTween.scale(menuCanvas, Vector3.zero, 0.5f).setEaseOutElastic();
         }
     }
 }
