@@ -79,6 +79,7 @@ namespace BootCamp.SametJR
                 GameObject player = Instantiate(bigPlayerPrefab, useSpawnPoints ? spawnPoint1.position : Vector3.left, Quaternion.identity);
                 //player.GetComponent<CharacterMovement>().SetStartPosition(useSpawnPoints ? spawnPoint1.position : Vector3.left);
                 player.tag = "Player";
+                player.name = "BigPlayer";
                 player.GetComponent<NetworkObject>().SpawnAsPlayerObject(clientId);
                 player.SetActive(false);
                 // player.transform.position = useSpawnPoints ? spawnPoint1.position : Vector3.left;
@@ -89,6 +90,7 @@ namespace BootCamp.SametJR
                 GameObject player = Instantiate(smallPlayerPrefab, useSpawnPoints ? spawnPoint2.position : Vector3.right, Quaternion.identity);
                 //player.GetComponent<CharacterMovement>().SetStartPosition(useSpawnPoints ? spawnPoint1.position : Vector3.left);
                 player.tag = "Player";
+                player.name = "SmallPlayer";
                 player.GetComponent<NetworkObject>().SpawnAsPlayerObject(clientId);
                 player.SetActive(false);
                 // player.transform.position = useSpawnPoints ? spawnPoint2.position : Vector3.right;

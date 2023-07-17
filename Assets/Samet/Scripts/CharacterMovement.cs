@@ -86,7 +86,7 @@ namespace BootCamp.SametJR
         {
             if (_animator == null)
             {
-                Debug.Log($"Animator is null for {gameObject.name}");
+                // Debug.Log($"Animator is null for {gameObject.name}");
                 return;
             }
 
@@ -139,7 +139,7 @@ namespace BootCamp.SametJR
                 // Debug.Log($"Hit {hitObject.name}");
                 if (hitObject.CompareTag("Pushable"))
                 {
-                    Debug.Log("Pushing");
+                    // Debug.Log("Pushing");
                     if (!canPush)
                     {
                         canMove = false;
@@ -190,7 +190,7 @@ namespace BootCamp.SametJR
         {
             if (!IsOwner) return;
 
-            Debug.Log($"Collision with {collision.gameObject.name}");
+            // Debug.Log($"Collision with {collision.gameObject.name}");
 
             if (collision.gameObject.CompareTag("Ground"))
             {
@@ -201,13 +201,13 @@ namespace BootCamp.SametJR
 
             if (collision.gameObject.CompareTag("DeadZone"))
             {
-                Debug.Log("Deadzone");
+                // Debug.Log("Deadzone");
                 transform.position = startPosition;
             }
 
             if (collision.gameObject.CompareTag("Platform"))
             {
-                Debug.Log($"Big one collided with platform {collision.gameObject.name}");
+                // Debug.Log($"Big one collided with platform {collision.gameObject.name}");
                 // transform.parent = collision.gameObject.transform;
                 // ReparentObjectServerRpc(collision.gameObject.transform);
                 // ReparentObjectServerRpc(GetComponent<NetworkObject>().NetworkObjectId, collision.gameObject.GetComponent<NetworkObject>().NetworkObjectId);
@@ -243,16 +243,19 @@ namespace BootCamp.SametJR
 
         private void OnTriggerEnter(Collider other)
         {
-            Debug.Log($"Trigger with {other.gameObject.name}");
+            // Debug.Log($"Trigger with {other.gameObject.name}");
         }
 
-        public void SetTransform(Transform _transform)
+        public void SetTransform(Transform _pos)
         {
             // if(!IsOwner) return;
             
-            transform.position = _transform.position;
-            transform.rotation = _transform.rotation;
-            transform.localScale = _transform.localScale;
+            transform.position = _pos.position;
+
+
+
+
+
         }
     }
 }
