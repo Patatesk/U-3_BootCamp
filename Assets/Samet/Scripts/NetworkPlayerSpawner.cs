@@ -5,7 +5,7 @@ using Unity.Netcode;
 
 namespace BootCamp.SametJR
 {
-    public class NetworkPlayerSpawner : MonoBehaviour
+    public class NetworkPlayerSpawner : NetworkBehaviour
     {
         public NetworkVariable<int> playerCount = new NetworkVariable<int>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
         public GameObject bigPlayerPrefab, smallPlayerPrefab;
@@ -20,7 +20,7 @@ namespace BootCamp.SametJR
             NetworkManager.Singleton.OnClientDisconnectCallback += OnClientDisconnect;
         }
 
-        private void OnDestroy()
+        private void OnDisable()
         {
             if (NetworkManager.Singleton == null) return;
             NetworkManager.Singleton.OnClientConnectedCallback -= OnClientConnected;
@@ -33,8 +33,36 @@ namespace BootCamp.SametJR
             if (!NetworkManager.Singleton.IsServer) return;
             Debug.Log("Client connected" + clientId + " ---- " + playerCount.Value);
             playerCount.Value++;
+            CheckCameraInitilizationServerRpc();
             SpawnPlayerServerRpc(clientId);
         }
+
+        [ServerRpc(RequireOwnership = false)]
+        private void CheckCameraInitilizationServerRpc()
+        {
+            if (playerCount.Value == 2)
+            {
+                SetCameraPlayerTransformsClientRPC();
+            }
+        }
+
+
+        [ClientRpc]
+        private void SetCameraPlayerTransformsClientRPC()
+        {
+            StartCoroutine(TestCoroutine());
+        }
+
+        private IEnumerator TestCoroutine()
+        {
+            yield return new WaitUntil(() => GameObject.FindGameObjectsWithTag("Player").Length == 2);
+            GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+            Transform a = players[0].transform;
+            Transform b = players[1].transform;
+            CameraFollow.Instance.InitPlayertransforms(a, b);
+        }
+
+
 
         private void OnClientDisconnect(ulong clientId)
         {

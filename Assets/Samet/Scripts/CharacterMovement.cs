@@ -248,7 +248,7 @@ namespace BootCamp.SametJR
 
         public void SetTransform(Transform _transform)
         {
-            if(!IsOwner) return;
+            // if(!IsOwner) return;
             
             transform.position = _transform.position;
             transform.rotation = _transform.rotation;

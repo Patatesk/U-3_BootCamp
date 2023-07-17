@@ -10,22 +10,19 @@ namespace SametJR
 
         private bool playerOneReady = false;
         private bool playerTwoReady = false;
+        private int totalPlayerInside = 0;
 
 
         private void OnTriggerEnter(Collider other)
         {
             if (other.CompareTag("Player"))
             {
-                if (!playerOneReady)
-                {
-                    playerTwoReady = true;
-                }
-                else if (!playerTwoReady)
-                {
-                    playerOneReady = true;
-                }
+                totalPlayerInside++;
 
-                if (playerTwoReady && playerOneReady) LevelManager1.Instance.ChangeLevel();
+                if (totalPlayerInside == 2)
+                {
+                    LevelManager1.Instance.ChangeLevel();
+                } 
             }
         }
       
@@ -33,14 +30,7 @@ namespace SametJR
         {
             if (other.CompareTag("Player"))
             {
-                if (playerOneReady)
-                {
-                    playerOneReady = false;
-                }
-                else if (playerTwoReady)
-                {
-                    playerTwoReady = false;
-                }
+                totalPlayerInside--;
             }
         }
     }
