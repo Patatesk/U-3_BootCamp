@@ -77,18 +77,18 @@ U-3 Oyunu
 
 # Kullanılan Paketler
 
-Animasyonlar: https://www.mixamo.com/
-Puppet Kid Free Demo: https://assetstore.unity.com/packages/3d/characters/humanoids/puppet-kid-free-demo-230773
-Mesh Tint Tile Map: https://assetstore.unity.com/packages/3d/environments/meshtint-free-tile-map-mega-toon-series-153619
-Kenney Platformer Kit: https://kenney.nl/assets/platformer-kit
-Cartoon Boy Rigged: https://www.cgtrader.com/free-3d-models/character/child/cartoon-boy-rigged-47bd55b0-d242-49a5-b9a2-e2bf27542133
-Pure Poly Nature Pack: https://assetstore.unity.com/packages/3d/environments/landscapes/free-low-poly-nature-forest-205742
-Skybox: https://assetstore.unity.com/packages/vfx/shaders/free-skybox-extended-shader-107400
-Magic Effects: https://assetstore.unity.com/packages/vfx/particles/spells/magic-effects-free-247933
-Sherbb's Particle Collection: https://assetstore.unity.com/packages/vfx/particles/sherbb-s-particle-collection-170798
-Multiplayer Samples Utilities: https://github.com/Unity-Technologies/com.unity.multiplayer.samples.coop
-ParrelSync: https://github.com/VeriorPies/ParrelSync
-LeanTween: https://assetstore.unity.com/packages/tools/animation/leantween-3595
+Animasyonlar: www.mixamo.com/
+Puppet Kid Free Demo: assetstore.unity.com/packages/3d/characters/humanoids/puppet-kid-free-demo-230773
+Mesh Tint Tile Map: assetstore.unity.com/packages/3d/environments/meshtint-free-tile-map-mega-toon-series-153619
+Kenney Platformer Kit: kenney.nl/assets/platformer-kit
+Cartoon Boy Rigged: www.cgtrader.com/free-3d-models/character/child/cartoon-boy-rigged-47bd55b0-d242-49a5-b9a2-e2bf27542133
+Pure Poly Nature Pack: assetstore.unity.com/packages/3d/environments/landscapes/free-low-poly-nature-forest-205742
+Skybox: assetstore.unity.com/packages/vfx/shaders/free-skybox-extended-shader-107400
+Magic Effects: /assetstore.unity.com/packages/vfx/particles/spells/magic-effects-free-247933
+Sherbb's Particle Collection: assetstore.unity.com/packages/vfx/particles/sherbb-s-particle-collection-170798
+Multiplayer Samples Utilities: github.com/Unity-Technologies/com.unity.multiplayer.samples.coop
+ParrelSync: github.com/VeriorPies/ParrelSync
+LeanTween: assetstore.unity.com/packages/tools/animation/leantween-3595
 
 
 
